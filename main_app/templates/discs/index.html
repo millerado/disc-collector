@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Discs | Disc Collector
+{% endblock %}
+
+{% block content %}
+<h1>Discs Index</h1>
+
+{% for disc in discs %}
+<a href="{% url 'details' disc.id %}">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ disc.mold }}</span>
+      <p>Manufacturer: {{ disc.manufacturer }}</p>
+      <p>Plastic: {{ disc.plastic }}</p>
+      <p>Flight: {{ disc.flight }}</p>
+    </div>
+  </div>
+</a>
+{% endfor %}
+{% endblock %}

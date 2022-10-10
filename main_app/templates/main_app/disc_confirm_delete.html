@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Delete Confrimation | Disc Collector
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Are you sure you want to delete <span class="blue-text">{{ objecst.mold }}</span>?</h1>
+
+<form method="post">
+ {% csrf_token %}
+ <input class="btn red" type="submit" value="Yes - Delete">
+ <a href="{% url 'toys_detail' object.id %}" class="btn blue">No - Cancel</a>
+</form>
+
+{% endblock %}

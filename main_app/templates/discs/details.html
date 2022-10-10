@@ -14,7 +14,7 @@
     <p>Plastic: {{ disc.plastic }}</p>
     <p>Flight: {{ disc.flight }}</p>
   </div>
-  <div class="card-content">
+  <div class="card-action">
     <a href="{% url 'discs_update' disc.id %}">Update</a>
     <a href="{% url 'discs_delete' disc.id %}">Delete</a>
   </div>

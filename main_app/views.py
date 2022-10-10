@@ -26,6 +26,6 @@ class DiscsUpdate(UpdateView):
   model = Disc
   fields = ('manufacturer', 'mold', 'plastic', 'flight')
 
-class DiscDelete(DeleteView):
+class DiscsDelete(DeleteView):
   model = Disc
   success_url = '/discs/'

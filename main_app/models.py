@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Disc(models.Model):
@@ -9,6 +10,9 @@ class Disc(models.Model):
 
   def __str__(self):
     return f'{self.plastic} {self.mold}'
+
+  def get_absolute_url(self):
+    return reverse('discs_detail', kwargs={'disc_id':self.id})
 
 
 

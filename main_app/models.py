@@ -12,7 +12,7 @@ class Disc(models.Model):
     return f'{self.plastic} {self.mold}'
 
   def get_absolute_url(self):
-    return reverse('discs_detail', kwargs={'disc_id':self.id})
+    return reverse('discs_details', kwargs={'disc_id':self.id})
 
 
 

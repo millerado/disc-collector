@@ -13,7 +13,7 @@ Delete Confrimation | Disc Collector
 <form method="post">
  {% csrf_token %}
  <input class="btn red" type="submit" value="Yes - Delete">
- <a href="{% url 'toys_detail' object.id %}" class="btn blue">No - Cancel</a>
+ <a href="{% url 'discs_details' object.id %}" class="btn blue">No - Cancel</a>
 </form>
 
 {% endblock %}

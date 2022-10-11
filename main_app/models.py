@@ -14,5 +14,11 @@ class Disc(models.Model):
   def get_absolute_url(self):
     return reverse('discs_details', kwargs={'disc_id':self.id})
 
+class Throws(models.Model):
+  date = models.DateField()
+  distance = models.CharField(max_length=3)
+  disc = models.ForeignKey(Disc, on_delete=models.CASCADE)
 
+  def __str__(self):
+    return f'Throw of {self.distance} on {self.date}'
 

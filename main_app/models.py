@@ -15,6 +15,9 @@ class Disc(models.Model):
     return reverse('discs_details', kwargs={'disc_id':self.id})
 
 class Throws(models.Model):
+  class Meta:
+    ordering = ('-distance',)
+    
   date = models.DateField()
   distance = models.CharField(max_length=3)
   disc = models.ForeignKey(Disc, on_delete=models.CASCADE)

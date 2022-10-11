@@ -9,4 +9,5 @@ urlpatterns = [
   path('discs/create', views.DiscsCreate.as_view(), name='discs_create'),
   path('disc/<int:pk>/update', views.DiscsUpdate.as_view(), name='discs_update'),
   path('disc/<int:pk>/delete', views.DiscsDelete.as_view(), name='discs_delete'),
+  path('disc/<int:pk>/add_throw', views.add_throw, name='add_throw'),
 ]

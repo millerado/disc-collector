@@ -1,7 +1,8 @@
-from ast import Del
-from django.shortcuts import render
-from .models import Disc
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from django.shortcuts import render, redirect
+from .models import Disc
+from .forms import ThrowForm
 
 # Create your views here.
 def home(request):
@@ -16,7 +17,19 @@ def discs_index(request):
 
 def discs_details(request, disc_id):
   disc = Disc.objects.get(id=disc_id)
-  return render(request, 'discs/details.html', {'disc': disc})
+  throw_form = ThrowForm()
+  return render(request, 'discs/details.html', {
+    'disc': disc,
+    'throw_form': throw_form  
+  })
+
+def add_throw(request, disc_id):
+  form = ThrowForm(request.POST)
+  if form.is_valid():
+    new_throw = form.save(commit=False)
+    new_throw.disc_id = disc_id
+    new_throw.save()
+  return redirect('discs_details', disc_id=disc_id)
 
 class DiscsCreate(CreateView):
   model = Disc

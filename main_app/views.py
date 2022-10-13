@@ -1,4 +1,6 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 from django.shortcuts import render, redirect
 from .models import Disc
@@ -30,6 +32,20 @@ def add_throw(request, disc_id):
     new_throw.disc_id = disc_id
     new_throw.save()
   return redirect('discs_details', disc_id=disc_id)
+
+def signup(request):
+  error_message = None
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - Please try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error': error_message }
+  return render(request, 'registration/signup.html', context)
 
 class DiscsCreate(CreateView):
   model = Disc

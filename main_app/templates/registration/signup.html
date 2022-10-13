@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Signup | Disc Collector
+{% endblock %}
+
+{% block content %}
+
+<h1>Signup</h1>
+
+{% if error %}
+<div class="card center-align">
+  <div class="card-content">
+    <p class="red-text">{{ error }}</p>
+  </div>
+</div>
+{% endif %}
+
+<form action="" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input class="btn blue" type="submit" value="Signup" />
+</form>
+
+{% endblock %}

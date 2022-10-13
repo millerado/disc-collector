@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Disc(models.Model):
@@ -7,6 +8,7 @@ class Disc(models.Model):
   plastic = models.CharField(max_length=50)
   mold = models.CharField(max_length=50)
   flight = models.TextField(max_length=250)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return f'{self.plastic} {self.mold}'
@@ -17,7 +19,7 @@ class Disc(models.Model):
 class Throws(models.Model):
   class Meta:
     ordering = ('-distance',)
-    
+
   date = models.DateField()
   distance = models.CharField(max_length=3)
   disc = models.ForeignKey(Disc, on_delete=models.CASCADE)

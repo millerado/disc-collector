@@ -8,12 +8,12 @@ Delete Confrimation | Disc Collector
 
 {% block content %}
 
-<h1>Are you sure you want to delete <span class="blue-text">{{ object.mold }}</span>?</h1>
+<h1>Are you sure you want to delete <span class="blue-text">{{ object.name }}</span>?</h1>
 
 <form method="post">
  {% csrf_token %}
  <input class="btn red" type="submit" value="Yes - Delete">
- <a href="{% url 'discs_details' object.id %}" class="btn blue">No - Cancel</a>
+ <a href="{% url 'bags_index' %}" class="btn blue">No - Cancel</a>
 </form>
 
 {% endblock %}

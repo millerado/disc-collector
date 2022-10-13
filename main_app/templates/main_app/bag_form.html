@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Create a New Bag | Disc Collector
+
+{% endblock %}
+
+{% block content %}
+
+{% if object %}
+<h1>Edit {{ object.name }}</h1>
+{% else %}
+<h1>Create a New Disc</h1>
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input 
+    class="btn green" 
+    type="submit" 
+    value="{% if object %} Update {% else %} Create {% endif %}">
+</form>
+
+{% endblock %}

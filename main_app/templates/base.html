@@ -29,6 +29,7 @@
             {% if user.is_authenticated %}
             <li><a href="{% url 'index' %}">View All My Discs!</a></li>
             <li><a href="{% url 'discs_create' %}">Add a New Disc</a></li>
+            <li><a href="{% url 'bags_index' %}">See all Disc Bags</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
             <li><a href="{% url 'login' %}">Login</a></li>

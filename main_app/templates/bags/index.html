@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+Bags Index | Disc Collector 
+{% endblock %}
+
+{% block content %}
+<h1>Bags Index</h1>
+
+{% for bag in bags %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ bag.name }}</span>
+    </div>
+    <div class="card-action">
+      <a href="{% url 'bags_update' bag.id %}">Update</a>
+      <a href="{% url 'bags_delete' bag.id %}">Delete</a>
+    </div>
+  </div>
+{% endfor %} 
+<a href="{% url 'bags_create' %}" class="btn green">Add a Bag</a>
+{% endblock %}

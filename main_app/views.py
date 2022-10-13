@@ -1,5 +1,7 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
 
 from django.shortcuts import render, redirect
@@ -13,10 +15,12 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def discs_index(request):
-  discs = Disc.objects.all()
+  discs = Disc.objects.filter(user=request.user)
   return render(request, 'discs/index.html', {'discs':discs })
 
+@login_required
 def discs_details(request, disc_id):
   disc = Disc.objects.get(id=disc_id)
   throw_form = ThrowForm()
@@ -25,6 +29,7 @@ def discs_details(request, disc_id):
     'throw_form': throw_form  
   })
 
+@login_required
 def add_throw(request, disc_id):
   form = ThrowForm(request.POST)
   if form.is_valid():
@@ -47,7 +52,7 @@ def signup(request):
   context = {'form': form, 'error': error_message }
   return render(request, 'registration/signup.html', context)
 
-class DiscsCreate(CreateView):
+class DiscsCreate(LoginRequiredMixin, CreateView):
   model = Disc
   fields = '__all__'
 
@@ -55,10 +60,10 @@ class DiscsCreate(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-class DiscsUpdate(UpdateView):
+class DiscsUpdate(LoginRequiredMixin, UpdateView):
   model = Disc
   fields = ('manufacturer', 'mold', 'plastic', 'flight')
 
-class DiscsDelete(DeleteView):
+class DiscsDelete(LoginRequiredMixin, DeleteView):
   model = Disc
   success_url = '/discs/'
